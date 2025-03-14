@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elite Chat App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat-window"></div>
+    <form id="chat-form">
+      <input id="message-input" type="text" placeholder="Type a message..." autocomplete="off" />
+      <button type="button" id="emoji-btn">😀</button>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- Socket.IO client library -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Emoji Button library (example) -->
+  <script src="https://unpkg.com/@joeattardi/emoji-button@latest/dist/index.js"></script>
+  <!-- Your custom client-side JS -->
+  <script src="client.js"></script>
+</body>
+</html>
