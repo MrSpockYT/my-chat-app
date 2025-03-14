@@ -1,30 +1,112 @@
 /* style.css */
+
+/* 
+  1. Body with black background, electric blue text,
+     starfield behind everything
+*/
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f2f5;
+  background: black;
+  color: #00ffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.chat-container {
+/* 2. Starfield overlay */
+.starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://raw.githubusercontent.com/t7/elegant-starfield/master/images/starfield.png") repeat;
+  animation: starScroll 30s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes starScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 2000px 2000px;
+  }
+}
+
+/* 3. Sign-Up Container */
+.signup-container {
+  position: relative;
+  z-index: 1;
   width: 90%;
-  max-width: 600px;
-  background: #fff;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+  padding: 20px;
+  text-align: center;
 }
 
+.signup-container h2 {
+  margin-bottom: 20px;
+}
+
+#signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#signup-form input {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #00ffff;
+  border-radius: 4px;
+  background: black;
+  color: #00ffff;
+}
+
+#signup-form button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #00ffff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#signup-form button:hover {
+  background-color: #00ced1;
+}
+
+/* 4. Chat Container (hidden by default) */
+.chat-container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+}
+
+/* 5. Chat Window */
 #chat-window {
   height: 400px;
   overflow-y: auto;
   padding: 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #00ffff;
 }
 
+/* 6. Chat Form */
 #chat-form {
   display: flex;
   padding: 10px;
@@ -33,20 +115,102 @@ body {
 #message-input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #00ffff;
   border-radius: 4px;
+  background: black;
+  color: #00ffff;
 }
 
-#emoji-btn, #chat-form button[type="submit"] {
+/* 7. Emoji & Send Buttons */
+#emoji-btn,
+#chat-form button[type="submit"] {
   margin-left: 10px;
   padding: 10px 15px;
   border: none;
-  background-color: #007bff;
-  color: #fff;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  background-color: #00ffff;
+  color: #000;
 }
 
-#emoji-btn {
-  background-color: #ffc107;
+#emoji-btn:hover,
+#chat-form button[type="submit"]:hover {
+  background-color: #00ced1;
 }
+
+/* 8. Emoji Picker Styling */
+
+/* Outer picker frame in electric blue, black background, top z-index */
+.emoji-picker__wrapper {
+  z-index: 9999 !important;
+  border: 2px solid #00ffff !important;   /* Outer frame in electric blue */
+  border-radius: 8px !important;
+  box-shadow: 0 0 10px #00ffff !important; /* Electric-blue glow */
+  background-color: #000 !important;
+  color: #00ffff !important;
+}
+
+/* Inner frames in neon green with black background & glow */
+.emoji-picker__header,
+.emoji-picker__search-container,
+.emoji-picker__content {
+  border: 2px solid #39ff14 !important; /* Neon green border */
+  box-shadow: 0 0 10px #39ff14 !important; /* Neon-green glow */
+  background-color: #000 !important;
+  color: #00ffff !important;
+}
+
+/* Ensure all "light grey" areas are black */
+.emoji-picker__tabs,
+.emoji-picker__tab,
+.emoji-picker__icon-button,
+.emoji-picker__footer,
+.emoji-picker__variant-popup,
+.emoji-picker__preview,
+.emoji-picker__preview-emoji,
+.emoji-picker__scroll-area,
+.emoji-picker__section,
+.emoji-picker__emoji-variant-popover {
+  background-color: #000 !important;  /* Pure black */
+  color: #00ffff !important;         /* Electric blue text */
+  border-color: #39ff14 !important;  /* Neon green if needed */
+}
+
+/* The search bar inside the picker */
+.emoji-picker__search {
+  background-color: #111 !important;
+  color: #00ffff !important;
+}
+
+/* Icon hover color if desired */
+.emoji-picker__icon-button:hover {
+  background-color: #111 !important;
+}
+
+/* 9. Scrollbar Styling (WebKit) */
+.emoji-picker__content::-webkit-scrollbar {
+  width: 8px;
+}
+.emoji-picker__content::-webkit-scrollbar-track {
+  background: #000 !important;       /* Black track */
+}
+.emoji-picker__content::-webkit-scrollbar-thumb {
+  background: #39ff14 !important;    /* Neon green thumb */
+  border-radius: 4px;
+}
+.emoji-picker__content::-webkit-scrollbar-thumb:hover {
+  background: #00ffff !important;    /* Electric blue on hover */
+}
+
+/* 10. Starfield Animation */
+@keyframes starScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 2000px 2000px;
+  }
+}
+
+
